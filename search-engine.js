@@ -7,11 +7,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadData();
 });
 
-// Load JSON data
+// Load JSON data progressively
 async function loadData() {
     try {
-        const response = await fetch('persons.json');
-        personsData = await response.json();
+        // Show loading message
+        document.getElementById('results').innerHTML = 
+            '<div class="loading">جاري تحميل البيانات...</div>';
+        
+        // Load index first
+        const indexResponse = await fetch('persons-index.json');
+        const index = await indexResponse.json();
+        
+        console.log(`Loading ${index.total_chunks} chunks...`);
+        
+        // Load all chunks progressively
+        for (let i = 0; i < index.total_chunks; i++) {
+            const chunkResponse = await fetch(index.chunks[i]);
+            const chunk = await chunkResponse.json();
+            personsData = personsData.concat(chunk);
+            
+            // Update progress
+            const progress = Math.round(((i + 1) / index.total_chunks) * 100);
+            document.getElementById('results').innerHTML = 
+                `<div class="loading">جاري تحميل البيانات... ${progress}%</div>`;
+        }
         
         // Build normalized index
         buildNormalizedIndex();
@@ -19,7 +38,11 @@ async function loadData() {
         // Update stats
         document.getElementById('totalRecords').textContent = personsData.length.toLocaleString('ar-EG');
         
-        console.log(`Loaded ${personsData.length} records`);
+        // Ready message
+        document.getElementById('results').innerHTML = 
+            '<div class="no-results">✓ تم تحميل البيانات بنجاح! ابدأ البحث...</div>';
+        
+        console.log(`✓ Loaded ${personsData.length} records successfully`);
     } catch (error) {
         console.error('Error loading data:', error);
         document.getElementById('results').innerHTML = 

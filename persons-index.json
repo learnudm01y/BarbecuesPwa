@@ -1,0 +1,17 @@
+{
+  "total_records": 9999,
+  "total_chunks": 10,
+  "chunk_size": 1000,
+  "chunks": [
+    "persons-chunk-0.json",
+    "persons-chunk-1.json",
+    "persons-chunk-2.json",
+    "persons-chunk-3.json",
+    "persons-chunk-4.json",
+    "persons-chunk-5.json",
+    "persons-chunk-6.json",
+    "persons-chunk-7.json",
+    "persons-chunk-8.json",
+    "persons-chunk-9.json"
+  ]
+}
