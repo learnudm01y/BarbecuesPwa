@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kabab-menu-v2';
+const CACHE_NAME = 'kabab-menu-v3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -7,6 +7,13 @@ const urlsToCache = [
   '/app.js',
   '/device-info.js',
   '/manifest.json',
+  '/fonts/Tajawal-Regular.ttf',
+  '/fonts/Tajawal-Light.ttf',
+  '/fonts/Tajawal-Medium.ttf',
+  '/fonts/Tajawal-Bold.ttf',
+  '/fonts/Tajawal-ExtraBold.ttf',
+  '/fonts/Tajawal-Black.ttf',
+  '/fonts/Tajawal-ExtraLight.ttf',
   '/images/1725890147_r6H6cQ.jpg',
   '/images/1725946614_TRBvLL.jpg',
   '/images/53d1276e-74fd-46d2-9e69-a0bf8f02fca5.jpg',
