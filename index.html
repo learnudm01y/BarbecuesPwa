@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#d4af37">
+    <meta name="description" content="منيو مشويات الكباب - أشهى المشويات">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/660.png-550x550.png.webp">
+    
+    <title>مشويات الكباب</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🔥 مشويات الكباب</h1>
+                <p class="tagline">أشهى المشويات على الفحم</p>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-category="all">الكل</button>
+            <button class="tab-btn" data-category="kabab">كباب</button>
+            <button class="tab-btn" data-category="chicken">دجاج</button>
+            <button class="tab-btn" data-category="mixed">مشكل</button>
+            <button class="tab-btn" data-category="plates">صحون</button>
+        </nav>
+
+        <!-- Menu Items -->
+        <main class="menu-container" id="menuContainer">
+            <!-- Items will be dynamically loaded -->
+        </main>
+
+        <!-- Cart Button -->
+        <button class="cart-btn" id="cartBtn">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <!-- Cart Modal -->
+        <div class="modal" id="cartModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>سلة الطلبات</h2>
+                    <button class="close-btn" id="closeCart">&times;</button>
+                </div>
+                <div class="modal-body" id="cartItems">
+                    <p class="empty-cart">السلة فارغة</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="total">
+                        <span>الإجمالي:</span>
+                        <span id="totalPrice">0 ريال</span>
+                    </div>
+                    <button class="checkout-btn" id="checkoutBtn">إتمام الطلب</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Detail Modal -->
+        <div class="modal" id="itemModal">
+            <div class="modal-content">
+                <button class="close-btn" id="closeItem">&times;</button>
+                <div class="modal-body" id="itemDetails"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker registration failed'));
+        }
+    </script>
+</body>
+</html>
