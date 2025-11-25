@@ -89,26 +89,32 @@ body {
     font-size: 0.9em;
     opacity: 0.95;
     font-weight: 300;
+    margin-bottom: 15px;
 }
 
 .device-info-link {
-    display: inline-block;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     margin-top: 15px;
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.3);
-    color: #fff;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+    color: #fff !important;
     text-decoration: none;
-    border-radius: 20px;
-    font-size: 0.9em;
-    font-weight: bold;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: 900;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid #fff !important;
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6) !important;
+    z-index: 9999;
+    position: relative;
 }
 
 .device-info-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.8) !important;
 }
 
 /* Navigation Tabs */
@@ -143,6 +149,27 @@ body {
     background: #d4af37;
     color: #1e1e1e;
     transform: scale(1.05);
+}
+
+.device-info-tab {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+    color: #fff !important;
+    border-color: #e74c3c !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-weight: 900 !important;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.5) !important;
+}
+
+.device-info-tab:hover {
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%) !important;
+    color: #fff !important;
+    transform: scale(1.08) !important;
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.7) !important;
 }
 
 /* Menu Container */
