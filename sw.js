@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kabab-menu-v6';
+const CACHE_NAME = 'kabab-menu-v7';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -23,8 +23,11 @@ const urlsToCache = [
   '/images/pngtree-chicken-mixed-grills-platter-with-salad-png-image_15071847.png'
 ];
 
-// Install Service Worker
+// Install Service Worker - Skip Waiting
 self.addEventListener('install', event => {
+  // Force the waiting service worker to become the active service worker
+  self.skipWaiting();
+  
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
