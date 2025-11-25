@@ -1,9 +1,11 @@
-const CACHE_NAME = 'kabab-menu-v1';
+const CACHE_NAME = 'kabab-menu-v2';
 const urlsToCache = [
   '/',
   '/index.html',
+  '/device-info.html',
   '/style.css',
   '/app.js',
+  '/device-info.js',
   '/manifest.json',
   '/images/1725890147_r6H6cQ.jpg',
   '/images/1725946614_TRBvLL.jpg',
