@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kabab-menu-v5';
+const CACHE_NAME = 'kabab-menu-v6';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -80,6 +80,14 @@ self.addEventListener('activate', event => {
           }
         })
       );
+    }).then(() => {
+      // Take control immediately
+      return self.clients.claim();
     })
   );
+  
+  // Force reload all clients
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => client.postMessage({ type: 'CACHE_UPDATED' }));
+  });
 });

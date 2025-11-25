@@ -33,7 +33,6 @@
             <button class="tab-btn" data-category="chicken">دجاج</button>
             <button class="tab-btn" data-category="mixed">مشكل</button>
             <button class="tab-btn" data-category="plates">صحون</button>
-            <a href="device-info.html" class="tab-btn device-info-tab">📱 بيانات الجهاز</a>
         </nav>
 
         <!-- Menu Items -->
@@ -78,11 +77,39 @@
 
     <script src="app.js"></script>
     <script>
-        // Register Service Worker
+        // Register Service Worker with Auto Update
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('Service Worker registered'))
-                .catch(err => console.log('Service Worker registration failed'));
+                .then(reg => {
+                    console.log('Service Worker registered');
+                    
+                    // Check for updates every 10 seconds
+                    setInterval(() => {
+                        reg.update();
+                    }, 10000);
+                    
+                    // Force update on new version
+                    reg.addEventListener('updatefound', () => {
+                        const newWorker = reg.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New version available, reload page
+                                if (confirm('يوجد تحديث جديد! هل تريد التحديث الآن؟')) {
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    });
+                })
+                .catch(err => console.log('Service Worker registration failed', err));
+            
+            // Force reload on controller change
+            let refreshing;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (refreshing) return;
+                refreshing = true;
+                window.location.reload();
+            });
         }
     </script>
 </body>
