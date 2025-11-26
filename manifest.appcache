@@ -1,0 +1,13 @@
+NETWORK:
+*
+
+CACHE:
+# Cache these resources
+/style.css
+/app.js
+/manifest.json
+
+FALLBACK:
+/ /index.html
+
+# Version 9.0.0

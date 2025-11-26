@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kabab-menu-v8';
+const CACHE_NAME = 'kabab-menu-v9';
 const urlsToCache = [
   '/',
   '/index.html',
