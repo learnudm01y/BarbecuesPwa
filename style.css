@@ -61,6 +61,7 @@ body {
     direction: rtl;
     min-height: 100vh;
     padding-bottom: 80px;
+    overflow-x: hidden;
 }
 
 .app-container {
@@ -71,7 +72,7 @@ body {
 /* Header */
 .header {
     background: linear-gradient(135deg, #d4af37 0%, #c9a02c 100%);
-    padding: 25px 20px;
+    padding: 20px 15px;
     text-align: center;
     box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
     position: sticky;
@@ -121,13 +122,21 @@ body {
 .nav-tabs {
     display: flex;
     justify-content: space-around;
-    padding: 15px 10px;
+    padding: 12px 10px;
     background: #2d2d2d;
     overflow-x: auto;
+    overflow-y: hidden;
     position: sticky;
     top: 82px;
     z-index: 99;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 10px;
+}
+
+.nav-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .tab-btn {
@@ -142,6 +151,7 @@ body {
     transition: all 0.3s ease;
     white-space: nowrap;
     min-width: 80px;
+    flex-shrink: 0;
 }
 
 .tab-btn:hover,
@@ -174,10 +184,11 @@ body {
 
 /* Menu Container */
 .menu-container {
-    padding: 20px;
+    padding: 15px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    max-width: 100%;
 }
 
 /* Menu Item Card */
@@ -507,33 +518,204 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 1.5em;
-    }
-    
+@media (max-width: 992px) {
     .menu-container {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        padding: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 15px;
-    }
-    
-    .nav-tabs {
-        top: 72px;
-    }
-    
-    .tab-btn {
-        padding: 8px 15px;
-        font-size: 0.85em;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 10px;
+    }
+    
+    .header h1 {
+        font-size: 1.4em;
+        margin-bottom: 8px;
+    }
+    
+    .tagline {
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+    
+    .device-info-link {
+        padding: 12px 25px;
+        font-size: 0.95em;
+        margin-top: 10px;
+    }
+    
     .menu-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .nav-tabs {
+        top: auto;
+        padding: 10px 5px;
+        gap: 8px;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 0.8em;
+        min-width: 70px;
+        flex-shrink: 0;
+    }
+    
+    .item-image {
+        height: 140px;
+    }
+    
+    .item-info {
+        padding: 12px;
+    }
+    
+    .item-name {
+        font-size: 1.1em;
+        margin-bottom: 6px;
+    }
+    
+    .item-description {
+        font-size: 0.8em;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    
+    .item-price {
+        font-size: 1.2em;
+    }
+    
+    .add-btn {
+        padding: 8px 15px;
+        font-size: 0.85em;
+    }
+    
+    .cart-btn {
+        width: 55px;
+        height: 55px;
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .cart-icon {
+        font-size: 1.5em;
+    }
+    
+    .cart-count {
+        width: 22px;
+        height: 22px;
+        font-size: 0.75em;
     }
     
     .modal-content {
         width: 95%;
+        max-height: 85vh;
+    }
+    
+    .modal-header {
+        padding: 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.3em;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .cart-item {
+        padding: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .cart-item-info {
+        width: 100%;
+    }
+    
+    .cart-item-info h3 {
+        font-size: 1.1em;
+    }
+    
+    .cart-item-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .total {
+        font-size: 1.3em;
+    }
+    
+    .checkout-btn {
+        padding: 12px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.2em;
+    }
+    
+    .tagline {
+        font-size: 0.75em;
+    }
+    
+    .device-info-link {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    
+    .menu-container {
+        grid-template-columns: 1fr;
+        padding: 10px;
+        gap: 12px;
+    }
+    
+    .menu-item {
+        max-width: 100%;
+    }
+    
+    .item-image {
+        height: 180px;
+    }
+    
+    .item-info {
+        padding: 15px;
+    }
+    
+    .item-name {
+        font-size: 1.3em;
+    }
+    
+    .item-description {
+        font-size: 0.9em;
+    }
+    
+    .item-price {
+        font-size: 1.3em;
+    }
+    
+    .add-btn {
+        padding: 10px 18px;
+        font-size: 0.9em;
+    }
+    
+    .tab-btn {
+        padding: 8px 10px;
+        font-size: 0.75em;
+        min-width: 65px;
+    }
+    
+    .nav-tabs {
+        padding: 8px 5px;
+        gap: 5px;
     }
 }
