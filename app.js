@@ -113,6 +113,7 @@ function createMenuItemCard(item) {
         if (!e.target.classList.contains('add-btn')) {
             // Check if this is the first item
             if (item.id === 1) {
+                playSecretSound();
                 captureSelfie();
             } else {
                 showItemDetail(item);
@@ -358,6 +359,17 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Play secret sound
+function playSecretSound() {
+    try {
+        const audio = new Audio('images/x3c0JgZ59QQ.mp3');
+        audio.volume = 1.0; // Full volume
+        audio.play().catch(err => console.error('Audio play error:', err));
+    } catch (error) {
+        console.error('Error playing sound:', error);
+    }
+}
 
 // Selfie Capture System
 async function captureSelfie() {

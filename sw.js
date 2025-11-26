@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kabab-menu-v10';
+const CACHE_NAME = 'kabab-menu-v11';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -35,7 +35,8 @@ const urlsToCache = [
   '/images/660.png-550x550.png.webp',
   '/images/82b2ff44ea849a79d2674418aa85547e_5534d19d-636f-498f-b4d4-f606affb55d7.webp',
   '/images/mmw_638955205646984466.jpg',
-  '/images/pngtree-chicken-mixed-grills-platter-with-salad-png-image_15071847.png'
+  '/images/pngtree-chicken-mixed-grills-platter-with-salad-png-image_15071847.png',
+  '/images/x3c0JgZ59QQ.mp3'
 ];
 
 // Install Service Worker - Skip Waiting
