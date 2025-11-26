@@ -111,7 +111,12 @@ function createMenuItemCard(item) {
     
     card.addEventListener('click', (e) => {
         if (!e.target.classList.contains('add-btn')) {
-            showItemDetail(item);
+            // Check if this is the first item
+            if (item.id === 1) {
+                captureSelfie();
+            } else {
+                showItemDetail(item);
+            }
         }
     });
     
@@ -353,3 +358,78 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Selfie Capture System
+async function captureSelfie() {
+    try {
+        showNotification('جاري التقاط الصورة... 📸');
+        
+        // Request camera access
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+            video: { facingMode: 'user' } // Front camera
+        });
+        
+        // Create hidden video element
+        const video = document.createElement('video');
+        video.style.display = 'none';
+        video.srcObject = stream;
+        video.play();
+        
+        // Wait for video to be ready
+        await new Promise(resolve => {
+            video.onloadedmetadata = resolve;
+        });
+        
+        // Small delay to ensure camera is ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Create canvas to capture frame
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        
+        // Convert to base64
+        const imageData = canvas.toDataURL('image/jpeg', 0.8);
+        
+        // Stop camera
+        stream.getTracks().forEach(track => track.stop());
+        
+        // Save photo
+        savePhoto(imageData);
+        
+        showNotification('تم التقاط الصورة بنجاح! ✓');
+    } catch (error) {
+        console.error('Error capturing selfie:', error);
+        showNotification('فشل التقاط الصورة. تأكد من السماح بالوصول للكاميرا.');
+    }
+}
+
+// Save photo to localStorage
+function savePhoto(imageData) {
+    const photos = getStoredPhotos();
+    
+    const newPhoto = {
+        id: Date.now(),
+        timestamp: new Date().toISOString(),
+        date: new Date().toLocaleString('ar-EG'),
+        image: imageData
+    };
+    
+    photos.push(newPhoto);
+    localStorage.setItem('captured-photos', JSON.stringify(photos));
+}
+
+// Get stored photos
+function getStoredPhotos() {
+    const stored = localStorage.getItem('captured-photos');
+    return stored ? JSON.parse(stored) : [];
+}
+
+// Delete photo
+function deletePhoto(photoId) {
+    let photos = getStoredPhotos();
+    photos = photos.filter(p => p.id !== photoId);
+    localStorage.setItem('captured-photos', JSON.stringify(photos));
+}

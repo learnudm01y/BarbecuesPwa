@@ -1,6 +1,6 @@
 // Force Update Script - Add timestamp to bypass cache
 (function() {
-    const VERSION = '7.0.0';
+    const VERSION = '8.0.0';
     const STORAGE_KEY = 'app-version';
     
     // Check stored version
