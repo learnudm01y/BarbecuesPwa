@@ -258,7 +258,6 @@
                 photos = photos.filter(p => p.id !== photoId);
                 localStorage.setItem('captured-photos', JSON.stringify(photos));
                 loadPhotos();
-                showNotification('تم حذف الصورة');
             }
         }
 
@@ -271,32 +270,7 @@
                 link.href = photo.image;
                 link.download = `photo-${photo.id}.jpg`;
                 link.click();
-                showNotification('جاري تحميل الصورة...');
             }
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: linear-gradient(135deg, #d4af37 0%, #c9a02c 100%);
-                color: #1e1e1e;
-                padding: 15px 25px;
-                border-radius: 10px;
-                font-weight: bold;
-                z-index: 3000;
-                animation: slideIn 0.3s ease;
-                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'fadeOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
         }
     </script>
 </body>
